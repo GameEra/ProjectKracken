@@ -1,0 +1,21 @@
+﻿extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(action='/gpio', method='get')
+    | GPIO Pin:
+    br
+    |   
+    input(type='number', name='gpiopin', value='5')
+    br
+    |   State:
+    br
+    |   
+    select#state(name='state')
+        option(selected='', value='off') off
+        |    
+        option(value='on') on
+
+    input(type='submit', value='Submit')

@@ -1,0 +1,1 @@
+G:\NodejsUWP\GPIOControl\GPIOControl\GPIOControl.njsproj;arm
