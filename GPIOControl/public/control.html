@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -24,25 +24,28 @@
 
     <table class="table">
         <tr>
-            <td>Body</td>
-            <td><button id ="bodyOn" type="button" class="btn">On</button></td>
-            <td><button id ="bodyOff" type="button" class="btn">Off</button></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
             <td>Tentacles</td>
-            <td><button id="tentaclesOn" type="button" class="btn">On</button></td>
-            <td><button id="tentaclesOff"type="button" class="btn">Off</button></td>
+            <td>
+                <input type="checkbox" id="tentacles" checked>
+            </td>
+            <td></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
-            <td>Turn</td>
-            <td><button type="button" class="btn">up</button></td>
-            <td><button type="button" class="btn">down</button></td>
-            <td><button type="button" class="btn">right</button></td>
-            <td><button type="button" class="btn">left</button></td>
+        <tr>
+            <td>Left</td>
+            <td><input type="checkbox" id="body" checked></td>
+            <td></td>
+            <td>Right</td>
+            <td><input type="checkbox" id="sail" onText="Right" offText="Left" checked></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     </table>
 
@@ -51,19 +54,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
     <script>
-        $("#bodyOn").click(function () {
-            jQuery.get("/gpio?gpiopin=21&state=on")
-        });
-        $("#bodyOff").click(function () {
-            jQuery.get("/gpio?gpiopin=21&state=off")
-        });
-        $("#tentaclesOn").click(function () {
-            jQuery.get("/gpio?gpiopin=5&state=on")
-        });
-        $("#tentaclesOff").click(function () {
-            jQuery.get("/gpio?gpiopin=5&state=off")
-        });
+        $("#tentacles").bootstrapSwitch();
+        $('#tentacles').on('switchChange.bootstrapSwitch', function (event, state) {state === true ? jQuery.get("https://www.google.com/#q=asdfasdfsadf") : jQuery.get("/gpio?gpiopin=21&state=off");}); 
+        $("#body").bootstrapSwitch();
+        $('#body').on('switchChange.bootstrapSwitch', function (event, state) {state === true ? jQuery.get("/gpio?gpiopin=5&state=on") : jQuery.get("/gpio?gpiopin=5&state=off");}); 
+        $("#body").bootstrapSwitch();
+        $('#body').on('switchChange.bootstrapSwitch', function (event, state) {state === true ? jQuery.get("/gpio?gpiopin=6&state=on") : jQuery.get("/gpio?gpiopin=6&state=off");}); 
+        $("#sail").bootstrapSwitch();
+        $("#sail").bootstrapSwitch();
+        $('#sail').on('switchChange.bootstrapSwitch', function (event, state) {state === true ? jQuery.get("/gpio?gpiopin=7&state=on") : jQuery.get("/gpio?gpiopin=7&state=off");}); 
     </script>
 </body>
 </html>
